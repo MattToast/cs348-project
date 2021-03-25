@@ -1,25 +1,47 @@
 from flask import Flask, json, jsonify, send_from_directory
+import mysql.connector
+
+import connection_info
 
 app = Flask(__name__,
             static_folder="../build",
             static_url_path="/")
 
 
-@app.route('/api/cutomers')
+@app.route('/api/customers')
 def customers():
     return jsonify({"message": "hello world"})
 
 
-@app.route('/api/employees')
+@app.route('/api/employees', methods=["GET", "POST"])
 def employees():
-    return jsonify([
-        {
-            "EmployeeID": 1,
-            "position": "manager",
-            "salary": 80_000,
-            "location": "Chicago"
-        }
-    ])
+    cnx = mysql.connector.connect(user=connection_info.MyUser, password=connection_info.MyPassword,
+                                  host=connection_info.MyHost,
+                                  database=connection_info.MyDatabase)
+
+    query = "SELECT * FROM employees;"
+    cursor = cnx.cursor()
+    emps = []
+    try:
+        cursor.execute(query)
+        for (id, pos, sal, loc) in cursor:
+            emps.append({
+                "EmployeeID": id,
+                "Location": loc,
+                "Position": pos,
+                "Salary": sal
+            })
+
+    except Exception as e:
+        print("Oi Got Err:")
+        print(e)
+        cursor.close()
+        cnx.close()
+        return jsonify([])
+
+    cursor.close()
+    cnx.close()
+    return jsonify(emps)
 
 
 @app.route('/api/inventory')

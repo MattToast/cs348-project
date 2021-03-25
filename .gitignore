@@ -12,6 +12,9 @@
 # production
 /build
 
+# security
+/api/connection_info.py
+
 # misc
 .DS_Store
 .env.local
