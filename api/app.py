@@ -5,8 +5,35 @@ app = Flask(__name__,
             static_url_path="/")
 
 
-@app.route('/api/message')
-def hello_world():
+@app.route('/api/cutomers')
+def customers():
+    return jsonify({"message": "hello world"})
+
+
+@app.route('/api/employees')
+def employees():
+    return jsonify([
+        {
+            "EmployeeID": 1,
+            "position": "manager",
+            "salary": 80_000,
+            "location": "Chicago"
+        }
+    ])
+
+
+@app.route('/api/inventory')
+def inventory():
+    return jsonify({"message": "hello world"})
+
+
+@app.route('/api/locations')
+def locations():
+    return jsonify({"message": "hello world"})
+
+
+@app.route('/api/sales')
+def sales():
     return jsonify({"message": "hello world"})
 
 
