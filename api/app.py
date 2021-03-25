@@ -1,62 +1,35 @@
 from flask import Flask, json, jsonify, send_from_directory
-import mysql.connector
 
-import connection_info
+import db_queries
 
 app = Flask(__name__,
             static_folder="../build",
             static_url_path="/")
 
 
-@app.route('/api/customers')
+@app.route('/api/customers', methods=["GET", "POST"])
 def customers():
-    return jsonify({"message": "hello world"})
+    return jsonify(db_queries.get_list_customers())
 
 
 @app.route('/api/employees', methods=["GET", "POST"])
 def employees():
-    cnx = mysql.connector.connect(user=connection_info.MyUser, password=connection_info.MyPassword,
-                                  host=connection_info.MyHost,
-                                  database=connection_info.MyDatabase)
-
-    query = "SELECT * FROM employees;"
-    cursor = cnx.cursor()
-    emps = []
-    try:
-        cursor.execute(query)
-        for (id, pos, sal, loc) in cursor:
-            emps.append({
-                "EmployeeID": id,
-                "Location": loc,
-                "Position": pos,
-                "Salary": sal
-            })
-
-    except Exception as e:
-        print("Oi Got Err:")
-        print(e)
-        cursor.close()
-        cnx.close()
-        return jsonify([])
-
-    cursor.close()
-    cnx.close()
-    return jsonify(emps)
+    return jsonify(db_queries.get_list_employees())
 
 
-@app.route('/api/inventory')
+@app.route('/api/inventory', methods=["GET", "POST"])
 def inventory():
-    return jsonify({"message": "hello world"})
+    return jsonify(db_queries.get_list_inventory())
 
 
-@app.route('/api/locations')
+@app.route('/api/locations', methods=["GET", "POST"])
 def locations():
-    return jsonify({"message": "hello world"})
+    return jsonify(db_queries.get_list_locations())
 
 
-@app.route('/api/sales')
+@app.route('/api/sales', methods=["GET", "POST"])
 def sales():
-    return jsonify({"message": "hello world"})
+    return jsonify(db_queries.get_list_sales())
 
 
 @app.route('/', defaults={'path': ''})
