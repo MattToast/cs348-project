@@ -36,19 +36,26 @@ def employees_route():
 
 @app.route('/api/inventory', methods=["GET", "POST"])
 def inventory_route():
-    return jsonify(inv.get_list_inventory())
+    if request.method == "GET":
+        return jsonify(inv.get_list_inventory())
+    elif request.method == "POST":
+        data = json.loads(request.data)
+        vals = (data['id'], data['name'])
+        inv.into_inventory(vals)
+        return jsonify(success=True)
 
 
-@app.route('/api/sales', methods=["GET", "POST"])
+@app.route('/api/sales', methods=["GET"])
 def sales_route():
     return jsonify(sales.get_list_sales())
 
 
-@app.route('/api/customers', methods=["GET", "POST"])
+@app.route('/api/customers', methods=["GET"])
 def customers_route():
     return jsonify(cust.get_list_customers())
 
 
+# Theoretically only used in production
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):

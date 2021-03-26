@@ -20,11 +20,16 @@ class Sales extends React.Component {
     const sales = this.state.salesList;
     return (
       <div>
-        {
-          sales.map((sale) => {
-            return (<ObjectCard data={sale}/>);
-          })
-        }
+        <div>
+          // TODO - Add a cool page like the one in the UI Mockups to add entry
+        </div>
+        <div>
+          {
+            sales.map((sale) => {
+              return (<ObjectCard data={sale} />);
+            })
+          }
+        </div>
       </div>
     );
   }

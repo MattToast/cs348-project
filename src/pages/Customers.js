@@ -20,11 +20,16 @@ class Customers extends React.Component {
     const custs = this.state.customersList;
     return (
       <div>
+      <div>
+        TODO - Still up for debate if adding is a manual proccess or if it should happen automatically on first sale
+      </div>
+      <div>
         {
           custs.map((cust) => {
             return (<ObjectCard data={cust}/>);
           })
         }
+      </div>
       </div>
     );
   }
