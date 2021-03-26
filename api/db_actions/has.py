@@ -9,11 +9,11 @@ def get_list_has():
 
     cursor = cnx.cursor()
     query = "SELECT * FROM Has;"
-    trans = []
+    hases = []
     try:
         cursor.execute(query)
         for (locID, prodID, price, stock) in cursor:
-            trans.append({
+            hases.append({
                 "Location ID": locID,
                 "Product ID": prodID,
                 "Price": price,
@@ -29,4 +29,4 @@ def get_list_has():
 
     cursor.close()
     cnx.close()
-    return trans
+    return hases

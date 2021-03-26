@@ -2,21 +2,20 @@ import mysql.connector
 import connection_info
 
 
-def get_list_buys():
+def get_list_owns():
     cnx = mysql.connector.connect(user=connection_info.MyUser, password=connection_info.MyPassword,
                                   host=connection_info.MyHost,
                                   database=connection_info.MyDatabase)
 
     cursor = cnx.cursor()
-    query = "SELECT * FROM Buys;"
-    buys = []
+    query = "SELECT * FROM Owns;"
+    owns = []
     try:
         cursor.execute(query)
-        for (custID, EmpId, SalesID) in cursor:
-            buys.append({
-                "Customer ID": custID,
-                "Employee ID": EmpId,
-                "Sale ID": SalesID,
+        for (locID, empId) in cursor:
+            owns.append({
+                "Location ID": locID,
+                "Employee ID": empId,
             })
 
     except Exception as e:
@@ -28,4 +27,4 @@ def get_list_buys():
 
     cursor.close()
     cnx.close()
-    return buys
+    return owns

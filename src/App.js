@@ -11,6 +11,7 @@ import Transfers from './pages/Transfers';
 import Includes from './pages/Includes';
 import Has from './pages/Has';
 import Buys from './pages/Buys';
+import Owns from './pages/Owns';
 
 class App extends React.Component {
   render() {
@@ -27,6 +28,7 @@ class App extends React.Component {
           <Route path="/includes" component={Includes} />
           <Route path="/has" component={Has} />
           <Route path="/buys" component={Buys} />
+          <Route path="/owns" component={Owns} />
         </Switch>
       </BrowserRouter>
     );

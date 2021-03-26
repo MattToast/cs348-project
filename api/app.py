@@ -10,6 +10,7 @@ import db_actions.transfers as trans
 import db_actions.includes as inc
 import db_actions.has as has
 import db_actions.buy as buy
+import db_actions.owns as owns
 
 app = Flask(__name__,
             static_folder="../build",
@@ -79,9 +80,9 @@ def buys_route():
     return jsonify(buy.get_list_buys())
 
 
-# @app.route('/api/owns', methods=["GET"])
-# def owns_route():
-#     return jsonify(trans.get_list_transfers())
+@app.route('/api/owns', methods=["GET"])
+def owns_route():
+    return jsonify(owns.get_list_owns())
 
 
 # Theoretically only used in production
