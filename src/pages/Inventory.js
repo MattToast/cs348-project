@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ObjectCard from '../components/ObjectCard/ObjectCard';
+import NewInventoryForm from '../components/Forms/NewInventory';
 
 class Inventory extends React.Component {
   constructor(props) {
@@ -20,11 +21,16 @@ class Inventory extends React.Component {
     const inv = this.state.inventoryList;
     return (
       <div>
-        {
-          inv.map((item) => {
-            return (<ObjectCard data={item} />);
-          })
-        }
+        <div>
+          <NewInventoryForm />
+        </div>
+        <div>
+          {
+            inv.map((item) => {
+              return (<ObjectCard data={item} />);
+            })
+          }
+        </div>
       </div>
     );
   }
