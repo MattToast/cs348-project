@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ObjectCard from '../components/ObjectCard/ObjectCard';
+import NewEmployeeForm from '../components/Forms/NewEmployeeForm';
 
 class Employees extends React.Component {
   constructor(props) {
@@ -20,11 +21,14 @@ class Employees extends React.Component {
     const emps = this.state.employeeList;
     return (
       <div>
-        {
-          emps.map((emp) => {
-            return (<ObjectCard data={emp}/>);
-          })
-        }
+        <NewEmployeeForm />
+        <div>
+          {
+            emps.map((emp) => {
+              return (<ObjectCard data={emp} />);
+            })
+          }
+        </div>
       </div>
     );
   }

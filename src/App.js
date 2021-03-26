@@ -14,11 +14,11 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Hompage} />
-          <Route path="/customers" component={Customers} />
-          <Route path="/employees" component={Employees} />
-          <Route path="/inventory" component={Inventory} />
           <Route path="/locations" component={Locations} />
+          <Route path="/employee" component={Employees} />
+          <Route path="/inventory" component={Inventory} />
           <Route path="/sales" component={Sales} />
+          <Route path="/customers" component={Customers} />
         </Switch>
       </BrowserRouter>
     );

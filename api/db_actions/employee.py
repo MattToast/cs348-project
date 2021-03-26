@@ -38,7 +38,7 @@ def into_employees(vals):
                                   database=connection_info.MyDatabase)
 
     cursor = cnx.cursor()
-    query = "INSERT INTO employees VALUES (%d, %s, $d, %d)"
+    query = "INSERT INTO Employee VALUES (%s, %s, %s, %s)"
     try:
         cursor.execute(query, vals)
         cnx.commit()
