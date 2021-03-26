@@ -1,6 +1,7 @@
 import mysql.connector
 import connection_info
 
+
 def get_list_locations():
     cnx = mysql.connector.connect(user=connection_info.MyUser, password=connection_info.MyPassword,
                                   host=connection_info.MyHost,
@@ -28,3 +29,21 @@ def get_list_locations():
     cursor.close()
     cnx.close()
     return locs
+
+
+def into_locations(vals):
+    cnx = mysql.connector.connect(user=connection_info.MyUser, password=connection_info.MyPassword,
+                                  host=connection_info.MyHost,
+                                  database=connection_info.MyDatabase)
+
+    cursor = cnx.cursor()
+    query = "INSERT INTO Locations VALUES (%s, %s, %s)"
+    try:
+        cursor.execute(query, vals)
+        cnx.commit()
+    except Exception as e:
+        cnx.rollback()
+        print("Oi Got Err:")
+        print(e)
+    cursor.close()
+    cnx.close()

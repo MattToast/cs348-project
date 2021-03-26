@@ -20,7 +20,7 @@ class NewEmployeeForm extends React.Component {
       method: "POST",
       body: JSON.stringify(this.state)
     })
-    .then(window.location.reload);
+      .then(() => window.location.reload());
     e.preventDefault();
   };
 

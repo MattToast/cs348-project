@@ -14,7 +14,13 @@ app = Flask(__name__,
 
 @app.route('/api/locations', methods=["GET", "POST"])
 def locations_route():
-    return jsonify(loc.get_list_locations())
+    if request.method == "GET":
+        return jsonify(loc.get_list_locations())
+    elif request.method == "POST":
+        data = json.loads(request.data)
+        vals = (data['id'], data['money'], data['owner'])
+        loc.into_locations(vals)
+        return jsonify(success=True)
 
 
 @app.route('/api/employees', methods=["GET", "POST"])
@@ -24,7 +30,6 @@ def employees_route():
     elif request.method == "POST":
         data = json.loads(request.data)
         vals = (data['id'], data['position'], data['salary'], data['location_id'])
-        print(vals)
         emp.into_employees(vals)
         return jsonify(success=True)
 

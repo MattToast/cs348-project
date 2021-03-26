@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ObjectCard from '../components/ObjectCard/ObjectCard';
-
+import NewLocationForm from '../components/Forms/NewLocationForm';
 class Locations extends React.Component {
   constructor(props) {
     super(props);
@@ -20,11 +20,14 @@ class Locations extends React.Component {
     const locs = this.state.locationList;
     return (
       <div>
-        {
-          locs.map((loc) => {
-            return (<ObjectCard data={loc}/>);
-          })
-        }
+        <NewLocationForm />
+        <div>
+          {
+            locs.map((loc) => {
+              return (<ObjectCard data={loc} />);
+            })
+          }
+        </div>
       </div>
     );
   }
