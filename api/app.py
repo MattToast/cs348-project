@@ -6,6 +6,10 @@ import db_actions.employee as emp
 import db_actions.inventory as inv
 import db_actions.sales as sales
 import db_actions.customers as cust
+import db_actions.transfers as trans
+import db_actions.includes as inc
+import db_actions.has as has
+import db_actions.buy as buy
 
 app = Flask(__name__,
             static_folder="../build",
@@ -53,6 +57,31 @@ def sales_route():
 @app.route('/api/customers', methods=["GET"])
 def customers_route():
     return jsonify(cust.get_list_customers())
+
+
+@app.route('/api/transfers', methods=["GET"])
+def transfers_route():
+    return jsonify(trans.get_list_transfers())
+
+
+@app.route('/api/includes', methods=["GET"])
+def includes_route():
+    return jsonify(inc.get_list_includes())
+
+
+@app.route('/api/has', methods=["GET"])
+def has_route():
+    return jsonify(has.get_list_has())
+
+
+@app.route('/api/buys', methods=["GET"])
+def buys_route():
+    return jsonify(buy.get_list_buys())
+
+
+# @app.route('/api/owns', methods=["GET"])
+# def owns_route():
+#     return jsonify(trans.get_list_transfers())
 
 
 # Theoretically only used in production

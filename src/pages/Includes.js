@@ -2,31 +2,31 @@ import React from 'react';
 
 import ObjectCard from '../components/ObjectCard/ObjectCard';
 
-class Sales extends React.Component {
+class Includes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      salesList: []
+      includeList: []
     }
   }
 
   componentDidMount() {
-    fetch('/api/sales')
+    fetch('/api/includes')
       .then(res => res.json())
-      .then(data => this.setState({ salesList: data }));
+      .then(data => this.setState({ includeList: data }));
   }
 
   render() {
-    const sales = this.state.salesList;
+    const incls = this.state.includeList;
     return (
       <div>
         <div>
-          TODO - Add a cool page like the one in the UI Mockups to add entry
+          TODO - Adding should be handled automatically by the made sale page
         </div>
         <div>
           {
-            sales.map((sale) => {
-              return (<ObjectCard data={sale} />);
+            incls.map((incl) => {
+              return (<ObjectCard data={incl} />);
             })
           }
         </div>
@@ -35,4 +35,4 @@ class Sales extends React.Component {
   }
 }
 
-export default Sales;
+export default Includes;

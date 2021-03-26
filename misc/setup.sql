@@ -1,6 +1,6 @@
 -- This is just a jot down of how I set up my tables
 -- It should not be used to actually create the tables
--- THESE TABLES ARE NOT FINAL, JUST USED FOR SETTING UP DEV ENV, NOW KEYS ARE DEFINED
+-- THESE TABLES ARE NOT FINAL, JUST USED FOR SETTING UP DEV ENV, NO KEYS ARE DEFINED
 
 create table Locations(LocationID INT, `Money` INT, OwnerID INT);
 insert into Locations values (1, 5000, 1), (2, 10000, 2);
