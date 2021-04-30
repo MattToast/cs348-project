@@ -91,3 +91,7 @@ def owns_route():
 def catch_all(path):
     print(app.static_folder)
     return send_from_directory(app.static_folder, 'index.html')
+
+
+if __name__ == "__main__":
+    app.run(port=5000)
