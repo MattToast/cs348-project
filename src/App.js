@@ -12,6 +12,7 @@ import Includes from './pages/Includes';
 import Has from './pages/Has';
 import Buys from './pages/Buys';
 import Owns from './pages/Owns';
+import SuccessfulSale from './pages/SuccessfulSale'
 
 class App extends React.Component {
   render() {
@@ -29,6 +30,7 @@ class App extends React.Component {
           <Route path="/has" component={Has} />
           <Route path="/buys" component={Buys} />
           <Route path="/owns" component={Owns} />
+          <Route path="/newsale" component={SuccessfulSale} />
         </Switch>
       </BrowserRouter>
     );

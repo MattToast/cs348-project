@@ -21,6 +21,7 @@ class Hompage extends React.Component {
         <div><Link to="/has">Has</Link></div>
         <div><Link to="/buys">Buys</Link></div>
         <div><Link to="/owns">Owns</Link></div>
+        <div><Link to="/newsale">Log a New Sale</Link></div>
       </div>
     );
   }
