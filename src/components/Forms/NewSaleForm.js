@@ -8,12 +8,18 @@ class NewSaleForm extends React.Component {
       custID: 0,
       emplID: 0,
       prodID: 0,
-      num: 0
+      num: 0,
+      date: ""
     };
   }
 
   componentDidMount() {
-    this.setState({ saleID: Date.now() });
+    const now = new Date();
+    const date = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
+    this.setState({
+      saleID: Date.now(),
+      date
+    });
   }
 
   handleCustIDChange = e => this.setState({ custID: e.target.value });

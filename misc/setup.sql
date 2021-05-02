@@ -75,7 +75,7 @@ create table Sales(
   CustomerID INT NOT NULL, 
   Amount INT NOT NULL, 
   LocationID INT NOT NULL, 
-  `Date` VARCHAR(50) NOT NULL,
+  `Date` VARCHAR(100) NOT NULL,
   PRIMARY KEY (SalesID),
   FOREIGN KEY (ProductID) REFERENCES Inventory(ProductID),
   FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
