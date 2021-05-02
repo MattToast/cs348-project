@@ -2,8 +2,9 @@ import mysql.connector
 import connection_info
 
 
-def get_list_transfers():
-    cnx = mysql.connector.connect(user=connection_info.MyUser, password=connection_info.MyPassword,
+def get_list_transfers() -> 'list[dict]':
+    cnx = mysql.connector.connect(user=connection_info.MyUser, 
+                                  password=connection_info.MyPassword,
                                   host=connection_info.MyHost,
                                   database=connection_info.MyDatabase)
 
