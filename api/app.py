@@ -1,6 +1,10 @@
 from flask import Flask, json, jsonify, send_from_directory, request
 import json
 
+# import blueprints
+from routes.reports import reportRoutes
+
+#import functionality
 import db_actions.locations as loc
 import db_actions.employee as emp
 import db_actions.inventory as inv
@@ -15,6 +19,8 @@ import db_actions.owns as owns
 app = Flask(__name__,
             static_folder="../build",
             static_url_path="/")
+
+app.register_blueprint(reportRoutes, url_prefix='/api/reports')
 
 
 @app.route('/api/locations', methods=["GET", "POST"])
