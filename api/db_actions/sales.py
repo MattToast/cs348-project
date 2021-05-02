@@ -32,3 +32,7 @@ def get_list_sales():
     cursor.close()
     cnx.close()
     return sales
+
+
+def into_sales(values):
+    pass
