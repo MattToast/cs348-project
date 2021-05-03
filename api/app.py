@@ -64,7 +64,7 @@ def sales_route():
         return jsonify(sales.get_list_sales())
     elif request.method == "POST":
         data = json.loads(request.data)
-        vals = (data["saleID"], data["custID"], data["emplID"], data["prodID"], data["num"], data["date"])
+        vals = (data["saleID"], data["custID"], data["emplID"], data["prodID"], data["num"], data["date"], 0)
         success = sales.into_sales(vals)
         if success:
             return Response(status=204)

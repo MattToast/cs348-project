@@ -3,7 +3,7 @@ DROP PROCEDURE IF EXISTS NewSaleCreation;
 DELIMITER //
 
 CREATE PROCEDURE NewSaleCreation ( 
-  IN saleID INT, 
+  IN saleID BIGINT(8) UNSIGNED, 
   IN custID INT, 
   IN emplID INT, 
   IN prodID INT, 
@@ -33,7 +33,7 @@ BEGIN
   ELSE
     -- Get the price of the product and multiply by quantity to get the total amount of sale
     SELECT Price INTO p FROM Has
-    WHERE ProductID = 1 AND LocationID = 1;
+    WHERE ProductID = prodID AND LocationID = locID;
 
     SET totalAmt = p * quantity;
 

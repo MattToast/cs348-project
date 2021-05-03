@@ -3,7 +3,8 @@ import connection_info
 
 
 def get_list_sales():
-    cnx = mysql.connector.connect(user=connection_info.MyUser, password=connection_info.MyPassword,
+    cnx = mysql.connector.connect(user=connection_info.MyUser,
+                                  password=connection_info.MyPassword,
                                   host=connection_info.MyHost,
                                   database=connection_info.MyDatabase)
 
@@ -21,7 +22,6 @@ def get_list_sales():
                 "LocationID": loc_id,
                 "Date": date
             })
-
     except Exception as e:
         print("Oi Got Err:")
         print(e)
@@ -34,6 +34,23 @@ def get_list_sales():
     return sales
 
 
-def into_sales(values):
+def into_sales(values) -> bool:
     print(values)
-    return True
+    cnx = mysql.connector.connect(user=connection_info.MyUser,
+                                  password=connection_info.MyPassword,
+                                  host=connection_info.MyHost,
+                                  database=connection_info.MyDatabase)
+    cursor = cnx.cursor()
+    result = 0
+    try:
+        retVals = cursor.callproc("NewSaleCreation", values)
+        result = retVals[-1]
+        if result:
+            cnx.commit()
+    except Exception as e:
+        print("Oi Got Err:")
+        print(e)
+        result = 0
+    cursor.close()
+    cnx.close()
+    return bool(result)
