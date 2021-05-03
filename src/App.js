@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Hompage from './pages/Hompage';
+import Error from './pages/Error';
 import Customers from './pages/Customers';
 import Employees from './pages/Employees';
 import Inventory from './pages/Inventory';
@@ -20,6 +21,7 @@ class App extends React.Component {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Hompage} />
+          <Route exact path="/error" component={Error} />
           <Route path="/locations" component={Locations} />
           <Route path="/employee" component={Employees} />
           <Route path="/inventory" component={Inventory} />

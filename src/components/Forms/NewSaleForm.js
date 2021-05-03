@@ -8,21 +8,35 @@ class NewSaleForm extends React.Component {
       custID: 0,
       emplID: 0,
       prodID: 0,
-      num: 0
+      num: 0,
+      date: ""
     };
   }
 
   componentDidMount() {
-    this.setState({ saleID: Date.now() });
+    const now = new Date();
+    const date = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`
+    this.setState({
+      saleID: Date.now(),
+      date
+    });
   }
 
   handleCustIDChange = e => this.setState({ custID: e.target.value });
   handleEmpIDChange = e => this.setState({ emplID: e.target.value });
   handleProdIDChange = e => this.setState({ prodID: e.target.value });
   handleNumChange = e => this.setState({ num: e.target.value });
-  handleSubmit = e => {
-    console.log(this.state);
+  handleSubmit = async e => {
     e.preventDefault();
+    const res = await fetch("/api/sales", {
+      method: "POST",
+      body: JSON.stringify(this.state)
+    });
+    if (res.ok) {
+      window.location.reload();
+    } else {
+      window.location.href = "/error"
+    }
   };
 
   render() {
