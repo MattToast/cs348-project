@@ -31,7 +31,7 @@ class App extends React.Component {
           <Route path="/includes" component={Includes} />
           <Route path="/has" component={Has} />
           <Route path="/buys" component={Buys} />
-          <Route path="/owns" component={Owns} />
+          {/* Removed Owns table bc it was redundant <Route path="/owns" component={Owns} /> */}
           <Route path="/newsale" component={SuccessfulSale} />
         </Switch>
       </BrowserRouter>

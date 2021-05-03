@@ -10,7 +10,7 @@ class Hompage extends React.Component {
   render() {
     return (
       <div>
-        Paths:
+        <h2>Paths:</h2>
         <div><Link to="/locations">Locations</Link></div>
         <div><Link to="/employee">Employee</Link></div>
         <div><Link to="/inventory">Inventory</Link></div>
@@ -20,8 +20,10 @@ class Hompage extends React.Component {
         <div><Link to="/includes">Includes</Link></div>
         <div><Link to="/has">Has</Link></div>
         <div><Link to="/buys">Buys</Link></div>
-        <div><Link to="/owns">Owns</Link></div>
+        {/* Removed Owns table bc it was redundant <div><Link to="/owns">Owns</Link></div> */}
         <div><Link to="/newsale">Log a New Sale</Link></div>
+
+        <h2>Reports:</h2>
       </div>
     );
   }
