@@ -37,8 +37,9 @@ BEGIN
 
     SET totalAmt = p * quantity;
 
-    -- Make an insert into the the sales table, trigger will deal with reulting changes to other tables
+    -- Make an insert into the the sales table, triggers will deal with reulting changes to other tables
     INSERT INTO Sales VALUES (saleID, prodID, custID, totalAmt, locID, dateStr);
+    INSERT INTO Includes VALUES (prodID, locID, saleID, quantity);
   END IF;
 END //
 DELIMITER ;
