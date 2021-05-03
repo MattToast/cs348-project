@@ -35,7 +35,6 @@ def get_list_sales():
 
 
 def into_sales(values) -> bool:
-    print(values)
     cnx = mysql.connector.connect(user=connection_info.MyUser,
                                   password=connection_info.MyPassword,
                                   host=connection_info.MyHost,
