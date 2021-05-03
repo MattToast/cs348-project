@@ -1,5 +1,3 @@
--- Stored procedure skeleton. Write your code here and then submit to Brightspace.
-
 DROP PROCEDURE IF EXISTS NewSaleCreation;
 
 DELIMITER //
@@ -10,16 +8,16 @@ CREATE PROCEDURE NewSaleCreation (
   IN emplID INT, 
   IN prodID INT, 
   IN quantity INT,
-  IN dateStr VARCHAR(100) 
-  OUT success TINYINT)
+  IN dateStr VARCHAR(100),
+  OUT success INT)
 
 BEGIN
   -- Init some stuff
-  SET success = 1;
   DECLARE numInventory INT DEFAULT 0;
   DECLARE locID INT DEFAULT 0;
-  DECLARE price INT DEFAULT 0;
+  DECLARE p INT DEFAULT 0;
   DECLARE totalAmt INT DEFAULT 0;
+  SET success = 1;
 
   -- Get the current location
   SELECT LocationID INTO locID FROM Employee
@@ -34,10 +32,10 @@ BEGIN
     SET success = 0;
   ELSE
     -- Get the price of the product and multiply by quantity to get the total amount of sale
-    SELECT Price INTO price FROM HAS
-    WHERE ProductID = prodID AND LocationID = locID;
+    SELECT Price INTO p FROM Has
+    WHERE ProductID = 1 AND LocationID = 1;
 
-    SET totalAmt = price * quantity;
+    SET totalAmt = p * quantity;
 
     -- Make an insert into the the sales table, trigger will deal with reulting changes to other tables
     INSERT INTO Sales VALUES (saleID, prodID, custID, totalAmt, locID, dateStr);

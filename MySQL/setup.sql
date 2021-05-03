@@ -70,7 +70,7 @@ insert into Inventory values
 -------------------------------------------------------------------------------------
 
 create table Sales(
-  SalesID INT NOT NULL, 
+  SalesID BIGINT(8) UNSIGNED NOT NULL, 
   ProductID INT NOT NULL, 
   CustomerID INT NOT NULL, 
   Amount INT NOT NULL, 
@@ -82,8 +82,8 @@ create table Sales(
   FOREIGN KEY (LocationID) REFERENCES Locations(LocationID)
 );
 insert into Sales values 
-  (1, 1, 1, 20, 1, '2021-03-15'),
-  (2, 1, 2, 18, 2, '2021-03-20');
+  (1620008010877, 1, 1, 20, 1, '2021-03-15'),
+  (1620008023049, 1, 2, 18, 2, '2021-03-20');
 
 -------------------------------------------------------------------------------------
 
@@ -105,7 +105,7 @@ insert into Transfers values
 create table Includes(
   ProductID INT NOT NULL, 
   LocationID INT NOT NULL,
-  SalesID INT NOT NULL,
+  SalesID BIGINT(8) UNSIGNED NOT NULL,
   NumBought INT NOT NULL,
   PRIMARY KEY (ProductID, LocationID, SalesID),
   FOREIGN KEY (ProductID) REFERENCES Inventory(ProductID),
@@ -113,8 +113,8 @@ create table Includes(
   FOREIGN KEY (SalesID) REFERENCES Sales(SalesID)
 );
 insert into Includes values
-  (1, 1, 1, 4),
-  (1, 2, 2, 3);
+  (1, 1, 1620008010877, 4),
+  (1, 2, 1620008023049, 3);
 
 -------------------------------------------------------------------------------------
 
@@ -137,15 +137,15 @@ insert into Has values
 create table Buys(
   CustomerID INT NOT NULL,
   EmployeeID INT NOT NULL,
-  SalesID INT NOT NULL,
+  SalesID BIGINT(8) UNSIGNED NOT NULL,
   PRIMARY KEY (CustomerID, EmployeeID, SalesID),
   FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
   FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID),
   FOREIGN KEY (SalesID) REFERENCES Sales(SalesID)
 );
 insert into Buys values
-  (1, 1, 1),
-  (2, 3, 2);
+  (1, 1, 1620008010877),
+  (2, 3, 1620008023049);
 
 -------------------------------------------------------------------------------------
 
