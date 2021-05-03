@@ -26,9 +26,17 @@ class NewSaleForm extends React.Component {
   handleEmpIDChange = e => this.setState({ emplID: e.target.value });
   handleProdIDChange = e => this.setState({ prodID: e.target.value });
   handleNumChange = e => this.setState({ num: e.target.value });
-  handleSubmit = e => {
-    console.log(this.state);
+  handleSubmit = async e => {
     e.preventDefault();
+    const res = await fetch("/api/sales", {
+      method: "POST",
+      body: JSON.stringify(this.state)
+    });
+    if (res.ok) {
+      window.location.reload();
+    } else {
+      window.location.href = "/error"
+    }
   };
 
   render() {

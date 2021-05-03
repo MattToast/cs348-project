@@ -35,4 +35,5 @@ def get_list_sales():
 
 
 def into_sales(values):
-    pass
+    print(values)
+    return True

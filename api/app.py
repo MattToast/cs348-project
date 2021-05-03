@@ -1,6 +1,8 @@
 from flask import Flask, json, jsonify, send_from_directory, request
 import json
 
+from flask.wrappers import Request, Response
+
 # import blueprints
 from routes.reports import reportRoutes
 
@@ -56,9 +58,18 @@ def inventory_route():
         return jsonify(success=True)
 
 
-@app.route('/api/sales', methods=["GET"])
+@app.route('/api/sales', methods=["GET", "POST"])
 def sales_route():
-    return jsonify(sales.get_list_sales())
+    if request.method == "GET":
+        return jsonify(sales.get_list_sales())
+    elif request.method == "POST":
+        data = json.loads(request.data)
+        vals = (data["saleID"], data["custID"], data["emplID"], data["prodID"], data["num"], data["date"])
+        success = sales.into_sales(vals)
+        if success:
+            return Response(status=204)
+        else:
+            return Response(status=500)
 
 
 @app.route('/api/customers', methods=["GET"])
