@@ -19,13 +19,17 @@ BEGIN
   DECLARE totalAmt INT DEFAULT 0;
   SET success = 1;
 
-  -- Get the current location
-  SELECT LocationID INTO locID FROM Employee
-  WHERE EmployeeID = emplID;
+  -- Make sure we are getting committed data and no other actions modifing it
+  SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+  START TRANSACTION;
+    -- Get the current location
+    SELECT LocationID INTO locID FROM Employee
+    WHERE EmployeeID = emplID;
 
-  -- Check to make sure that the store has the inventory to complete the sale
-  SELECT Stock INTO numInventory FROM Has
-  WHERE ProductID = prodID AND LocationID = locID;
+    -- Check to make sure that the store has the inventory to complete the sale
+    SELECT Stock INTO numInventory FROM Has
+    WHERE ProductID = prodID AND LocationID = locID;
+  COMMIT;
 
   -- If there is not enough fail, else continue
   IF numInventory < quantity THEN
