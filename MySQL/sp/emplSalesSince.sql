@@ -17,7 +17,7 @@ BEGIN
                             GROUP BY b.EmployeeID;
   DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;                    
 
-  SET report = "<html><table border = '1'><tr><th colspan=3>Employee Sales History</th></tr><tr><td>Employee ID</td><td>All</td><td>Max</td></tr>";
+  SET report = "<table border = '1'><tr><th colspan=3>Employee Sales History</th></tr><tr><td>Employee ID</td><td>All</td><td>Max</td></tr>";
   
   -- Set the transaction level to read commited for more parrallel data
   SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
@@ -33,7 +33,7 @@ BEGIN
       SET report = CONCAT(report, "<tr><td>", emplID, "</td><td>", totalSales, "</td><td>", maxSale, "</td></tr>");
     END LOOP getSales;
     CLOSE salesCursor;
-    SET report = CONCAT(report, "</table></html>");
+    SET report = CONCAT(report, "</table>");
   COMMIT;
 END //
 DELIMITER ;

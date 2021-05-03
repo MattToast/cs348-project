@@ -55,15 +55,16 @@ def into_sales(values) -> bool:
     return bool(result)
 
 
-def get_sales_report(values):
+def get_sales_report(values, title):
     cnx = mysql.connector.connect(user=connection_info.MyUser,
                                 password=connection_info.MyPassword,
                                 host=connection_info.MyHost,
                                 database=connection_info.MyDatabase)
     cursor = cnx.cursor()
-    report = ""
+    report: str = None
     try:
-        pass
+        retVals = cursor.callproc("GetEmplSalesSince", values)
+        report = "<h2>" + title + "</h2>" + retVals[-1]
     except Exception as e:
         print("Oi, got error:")
         print(e)
