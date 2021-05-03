@@ -53,3 +53,22 @@ def into_sales(values) -> bool:
     cursor.close()
     cnx.close()
     return bool(result)
+
+
+def get_sales_report(values):
+    cnx = mysql.connector.connect(user=connection_info.MyUser,
+                                password=connection_info.MyPassword,
+                                host=connection_info.MyHost,
+                                database=connection_info.MyDatabase)
+    cursor = cnx.cursor()
+    report = ""
+    try:
+        pass
+    except Exception as e:
+        print("Oi, got error:")
+        print(e)
+        report = "<div>We had some trouble getting that report</div>"
+    cursor.close()
+    cnx.close()
+    return report
+

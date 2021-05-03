@@ -1,6 +1,7 @@
-from flask import Blueprint
+from flask import Blueprint,request
 
 import db_actions.transfers as trans
+import db_actions.sales as sales
 
 reportRoutes = Blueprint('reportRoutes', __name__)
 
@@ -17,6 +18,15 @@ def transfers():
     return transfer_table
 
 
-@reportRoutes.route('empsales/<empID>', methods=["GET"])
-def employee_sales(empID):
-    return f"Get employee sales for employee with id {empID}"
+@reportRoutes.route('/empsales', methods=["GET"])
+def employee_sales():
+    since = request.args.get("s")
+    if since == None:
+        since = 0
+    vals = (0, 0)
+    sales_report = sales.get_sales_report(vals)
+    print(sales_report)
+    if since:
+        return f"Get employee sales since {since}"
+    else:
+        return "Get all employee sales"
