@@ -44,6 +44,7 @@ BEGIN
     -- Make an insert into the the sales table, triggers will deal with reulting changes to other tables
     INSERT INTO Sales VALUES (saleID, prodID, custID, totalAmt, locID, dateStr);
     INSERT INTO Includes VALUES (prodID, locID, saleID, quantity);
+    INSERT INTO Buys VALUES (custID, emplID, saleID);
   END IF;
 END //
 DELIMITER ;
