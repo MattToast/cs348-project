@@ -1,4 +1,7 @@
 from flask import Blueprint,request
+import mysql.connector
+import connection_info as ci
+
 
 import db_actions.transfers as trans
 import db_actions.sales as sales
@@ -27,3 +30,23 @@ def employee_sales():
         title = "Sales for all time:"
     vals = (since, 0)
     return sales.get_sales_report(vals, title)
+
+
+@reportRoutes.route('/complex', methods=["GET"])
+def complex_report():
+    cnx = mysql.connector.connect(user=ci.MyUser,
+                                  password=ci.MyPassword,
+                                  host=ci.MyHost,
+                                  database=ci.MyDatabase)
+    cursor = cnx.cursor()
+    report: str = None
+    try:
+        # Don't know why, but when a mad the stored proc with only one arg I got an
+        # 'args must be a sequence' error -> hacky fix but it works
+        retVals = cursor.callproc("GetComplexReport", args=(0, 0))
+        report = "<h1>Complex Report</h1>" + retVals[-1]
+    except Exception as e:
+        print("Oi, got err:")
+        print(e)
+        report = "Something went wrong making the report"
+    return report
