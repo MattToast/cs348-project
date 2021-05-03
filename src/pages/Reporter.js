@@ -10,7 +10,7 @@ class Reporter extends React.Component {
 
   componentDidMount() {
     const { reportName } = this.props.match.params;
-    fetch(`/api/reports/${reportName}`)
+    fetch(`/api/reports/${reportName}${this.props.location.search}`)
       .then(res => res.text())
       .then(report => this.setState({ report }))
       .catch(e => console.error(e));
