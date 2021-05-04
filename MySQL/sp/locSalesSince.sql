@@ -10,13 +10,13 @@ BEGIN
   DECLARE totalSales INT DEFAULT 0; 
   DECLARE maxSale INT DEFAULT 0; 
   DECLARE salesCursor CURSOR FOR
-                            SELECT l.LocationID, SUM(s.Amount), MAX(s.Amount)
-                            FROM Sales s
-                            JOIN Buys b ON b.SalesID = s.SalesID
-                            JOIN Employee e ON b.EmployeeID = e.EmployeeID
-                            JOIN Locations l ON l.LocationID = e.EmployeeID
-                            WHERE b.SalesID > since_time
-                            GROUP BY l.LocationID;
+                              SELECT l.LocationID, SUM(s.Amount), MAX(s.Amount)
+                              FROM Sales s
+                              JOIN Buys b ON b.SalesID = s.SalesID
+                              JOIN Employee e ON b.EmployeeID = e.EmployeeID
+                              JOIN Locations l ON l.LocationID = e.LocationID
+                              WHERE b.SalesID > since_time
+                              GROUP BY l.LocationID;
   DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;                    
 
   SET report = "<table border = '1'><tr><th colspan=3>Location Sales History</th></tr><tr><td>Location ID</td><td>All</td><td>Max</td></tr>";
