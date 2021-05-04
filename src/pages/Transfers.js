@@ -21,7 +21,7 @@ class Transfers extends React.Component {
     return (
       <div>
         <div>
-          TODO - Adding should be handled by the transfer page show in Mockups
+          <NewTransferForm />
         </div>
         <div>
           {
