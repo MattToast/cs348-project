@@ -56,3 +56,6 @@ class NewTransferForm extends React.Component {
     );
   }
 }
+
+
+export default NewTransferForm;

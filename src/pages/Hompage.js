@@ -22,6 +22,7 @@ class Hompage extends React.Component {
         <div><Link to="/buys">Buys</Link></div>
         {/* Removed Owns table bc it was redundant <div><Link to="/owns">Owns</Link></div> */}
         <div><Link to="/newsale">Log a New Sale</Link></div>
+        <div><Link to="/newtransfer">Log a New Transfer</Link></div>
 
         <h2>Reports:</h2>
         <div><Link to="/reports/transfers">Get a Transfers Report</Link></div>

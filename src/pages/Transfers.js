@@ -1,5 +1,6 @@
 import React from 'react';
 
+import NewTransferForm from '../components/Forms/NewTransferForm';
 import ObjectCard from '../components/ObjectCard/ObjectCard';
 
 class Transfers extends React.Component {
