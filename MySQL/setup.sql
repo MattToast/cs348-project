@@ -1,7 +1,6 @@
 -- Sets up the tables in expected manner
 -- Do the deletes by hand, but every thing after that can be `ctrl+a, ctrl+c, ctrl+v`ed
 
-DROP TABLE IF EXISTS Owns;
 DROP TABLE IF EXISTS Buys;
 DROP TABLE IF EXISTS Has;
 DROP TABLE IF EXISTS Includes;
@@ -149,11 +148,5 @@ insert into Buys values
 
 -------------------------------------------------------------------------------------
 
--- DROP TABLE IF EXISTS Owns;
--- create table Owns(
---   LocationID INT,
---   EmployeeID INT
--- );
--- insert into Owns values 
---   (1, 2),
---   (2, 3);
+CREATE INDEX salesSalesIDIndex ON Sales(SalesID) USING BTREE;
+CREATE INDEX buysEmployeeIDIndex ON Buys(EmployeeID) USING BTREE;
