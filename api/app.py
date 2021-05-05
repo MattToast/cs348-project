@@ -83,8 +83,11 @@ def transfers_route():
         return jsonify(trans.get_list_transfers())
     elif request.method == "POST":
         data = json.loads(request.data)
-        print(data)
-        return Response(status=204)
+        vals = (data['id'], data['fromID'], data['toID'], data['amnt']) # whatever the expected order of the data is as an iterable
+        if trans.into_transfers(vals):
+            return Response(status=204)
+        else:
+            return Response(status=500)
 
 
 @app.route('/api/includes', methods=["GET"])
