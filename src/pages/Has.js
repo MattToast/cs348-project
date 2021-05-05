@@ -21,7 +21,7 @@ class Has extends React.Component {
     return (
       <div>
         <div>
-          TODO - Adding should be handled automatically by the made sale page
+          <NewHasForm />
         </div>
         <div>
           {
