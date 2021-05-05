@@ -42,8 +42,8 @@ def into_transfers(data) -> bool:
 
     cursor = cnx.cursor()
     query0 = "INSERT INTO Transfers VALUES (%s, %s, %s, %s);"
-    query1 = "UPDATE Locations SET Money = Money - (%s) WHERE (%s) = (%s);"
-    query2 = "UPDATE Locations SET Money = Money + (%s) WHERE (%s) = (%s);"
+    query1 = "UPDATE Locations SET money = money - (%s) WHERE (%s) = (%s);"
+    query2 = "UPDATE Locations SET money = money + (%s) WHERE (%s) = (%s);"
     succ = True
     try:
         cursor.execute(query0, data)
