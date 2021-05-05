@@ -1,5 +1,6 @@
 import React from 'react';
 
+import NewHasForm from '../components/Forms/NewHasForm';
 import ObjectCard from '../components/ObjectCard/ObjectCard';
 
 class Has extends React.Component {
