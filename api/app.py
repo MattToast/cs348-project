@@ -95,9 +95,17 @@ def includes_route():
     return jsonify(inc.get_list_includes())
 
 
-@app.route('/api/has', methods=["GET"])
+@app.route('/api/has', methods=["GET", "POST"])
 def has_route():
-    return jsonify(has.get_list_has())
+    if request.method == "GET":
+        return jsonify(has.get_list_has())
+    elif request.method == "POST":
+        data = json.loads(request.data)
+        vals = (data['locID'], data['prodID'], data['price'], data['stock']) # whatever the expected order of the data is as an iterable
+        if has.into_has(vals):
+            return Response(status=204)
+        else:
+            return Response(status=500)
 
 
 @app.route('/api/buys', methods=["GET"])
