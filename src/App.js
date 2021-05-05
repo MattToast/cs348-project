@@ -15,6 +15,7 @@ import Has from './pages/Has';
 import Buys from './pages/Buys';
 import SuccessfulSale from './pages/SuccessfulSale'
 import NewTransferPage from './pages/Transfers';
+import NewHasPage from './pages/Has';
 
 class App extends React.Component {
   render() {
@@ -36,6 +37,7 @@ class App extends React.Component {
           {/* Removed Owns table bc it was redundant <Route path="/owns" component={Owns} /> */}
           <Route path="/newsale" component={SuccessfulSale} />
           <Route path="/newtransfer" component={NewTransferPage} />
+          <Route path="/newhas" component={NewHasPage} />
         </Switch>
       </BrowserRouter>
     );
