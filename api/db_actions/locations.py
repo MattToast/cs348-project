@@ -39,7 +39,7 @@ def into_locations(vals):
     cursor = cnx.cursor()
     query = "INSERT INTO Locations VALUES (%s, %s, %s) ON DUPLICATE KEY UPDATE ownerID = (%s)"
     try:
-        cursor.execute(query, vals[0], vals[1], vals[2], vals[1])
+        cursor.execute(query, (vals[0], vals[1], vals[2], vals[2]))
         cnx.commit()
     except Exception as e:
         cnx.rollback()
