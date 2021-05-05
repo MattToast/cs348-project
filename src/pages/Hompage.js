@@ -31,6 +31,7 @@ class Hompage extends React.Component {
         <div><Link to={`/reports/empsales?s=${Date.now() - (1000 * 60 * 60 * 24 * 30)}&t=Report for Last Month`}>Get a Employee Sales Report For Last 30 Days</Link></div>
         <div><Link to={`/reports/empsales?s=${Date.now() - (1000 * 60 * 60 * 24 * 365)}&t=Report for Last Year`}>Get a Employee Sales Report For Last 365 Days</Link></div>
         <div><Link to="/reports/empsales?s=0">Get a Employee Sales Report For All Time</Link></div>
+        <div><Link to="/reports/moneyflow">Get a Money Flow Report</Link></div>
         <div><Link to="/reports/complex">Get a Complex Report</Link></div>
       </div>
     );

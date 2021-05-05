@@ -50,3 +50,23 @@ def complex_report():
         print(e)
         report = "Something went wrong making the report"
     return report
+
+
+@reportRoutes.route('/moneyflow', methods=["GET"])
+def moneyflow_report():
+    cnx = mysql.connector.connect(user=ci.MyUser,
+                                  password=ci.MyPassword,
+                                  host=ci.MyHost,
+                                  database=ci.MyDatabase)
+    cursor = cnx.cursor()
+    report: str = None
+    try:
+        # Don't know why, but when a mad the stored proc with only one arg I got an
+        # 'args must be a sequence' error -> hacky fix but it works
+        retVals = cursor.callproc("MoneyFlowReport", args=(0, 0))
+        report = "<h1>Money Flow Report</h1>" + retVals[-1]
+    except Exception as e:
+        print("Oi, got err:")
+        print(e)
+        report = "Something went wrong making the report"
+    return report
