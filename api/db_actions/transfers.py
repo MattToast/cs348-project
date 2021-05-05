@@ -42,13 +42,13 @@ def into_transfers(data) -> bool:
 
     cursor = cnx.cursor()
     query0 = "INSERT INTO Transfers VALUES (%s, %s, %s, %s)"
-    query1 = "INSERT  Transfers VALUES (%s, %s)"
-    query2 = "INSERT INTO Transfers VALUES (%s, %s)"
+    query1 = "UPDATE Locations SET Money = Money - (%s) WHERE (%s) = (%s)"
+    query2 = "UPDATE Locations SET Money = Money + (%s) WHERE (%s) = (%s)"
     succ = True
     try:
         cursor.execute(query0, data)
-        cursor.execute(query1, (data[1], data[3]))
-        cursor.execute(query2, (data[2], data[3]))
+        cursor.execute(query1, (data[3], data[1], data[1]))
+        cursor.execute(query2, (data[3], data[2], data[2]))
         cnx.commit()
     except Exception as e:
         print(e)
