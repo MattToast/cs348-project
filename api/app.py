@@ -77,9 +77,17 @@ def customers_route():
     return jsonify(cust.get_list_customers())
 
 
-@app.route('/api/transfers', methods=["GET"])
+@app.route('/api/transfers', methods=["GET", "POST"])
 def transfers_route():
-    return jsonify(trans.get_list_transfers())
+    if request.method == "GET":
+        return jsonify(trans.get_list_transfers())
+    elif request.method == "POST":
+        data = json.loads(request.data)
+        vals = (data['id'], data['fromID'], data['toID'], data['amnt']) # whatever the expected order of the data is as an iterable
+        if trans.into_transfers(vals):
+            return Response(status=204)
+        else:
+            return Response(status=500)
 
 
 @app.route('/api/includes', methods=["GET"])

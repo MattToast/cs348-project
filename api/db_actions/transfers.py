@@ -1,9 +1,10 @@
 import mysql.connector
+from mysql.connector.errors import custom_error_exception
 import connection_info
 
 
 def get_list_transfers() -> 'list[dict]':
-    cnx = mysql.connector.connect(user=connection_info.MyUser, 
+    cnx = mysql.connector.connect(user=connection_info.MyUser,
                                   password=connection_info.MyPassword,
                                   host=connection_info.MyHost,
                                   database=connection_info.MyDatabase)
@@ -31,3 +32,29 @@ def get_list_transfers() -> 'list[dict]':
     cursor.close()
     cnx.close()
     return trans
+
+
+def into_transfers(data) -> bool:
+    cnx = mysql.connector.connect(user=connection_info.MyUser,
+                                  password=connection_info.MyPassword,
+                                  host=connection_info.MyHost,
+                                  database=connection_info.MyDatabase)
+
+    cursor = cnx.cursor()
+    query0 = "INSERT INTO Transfers VALUES (%s, %s, %s, %s);"
+    query1 = "UPDATE Locations SET Money = Money - (%s) WHERE (%s) = (%s);"
+    query2 = "UPDATE Locations SET Money = Money + (%s) WHERE (%s) = (%s);"
+    succ = True
+    try:
+        cursor.execute(query0, data)
+        cursor.execute(query1, (data[3], data[1], data[1]))
+        cursor.execute(query2, (data[3], data[2], data[2]))
+        cnx.commit()
+    except Exception as e:
+        print(e)
+        succ = False
+    cursor.close()
+    cnx.close()
+    return succ
+
+    

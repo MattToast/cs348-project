@@ -40,11 +40,11 @@ class NewTransferForm extends React.Component {
           </div>
           <div>
             <label>From ID</label>
-            <input type="number" value={s.toID} onChange={this.handleFromIDChange} />
+            <input type="number" value={s.fromID} onChange={this.handleFromIDChange} />
           </div>
           <div>
             <label>To ID</label>
-            <input type="number" value={s.fromID} onChange={this.handleToIDChange} />
+            <input type="number" value={s.toID} onChange={this.handleToIDChange} />
           </div>
           <div>
             <label>Amount</label>
@@ -56,3 +56,6 @@ class NewTransferForm extends React.Component {
     );
   }
 }
+
+
+export default NewTransferForm;
